@@ -1,4 +1,4 @@
-import { AxiosInstance, AxiosRequestConfig } from 'axios'
+import { AxiosInstance } from 'axios'
 import { FormLogin } from '@type/auth'
 
 const AUTH_PREFIX = {
@@ -7,8 +7,8 @@ const AUTH_PREFIX = {
 }
 
 const apiAuth = (axios: AxiosInstance) => ({
-  login(formData: AxiosRequestConfig<FormLogin>) {
-    return axios.get(AUTH_PREFIX.LOGIN, formData)
+  login(formData: FormLogin) {
+    return axios.get(AUTH_PREFIX.LOGIN, {data: formData})
   },
 
   logout() {

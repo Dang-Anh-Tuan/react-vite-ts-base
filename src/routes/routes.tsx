@@ -3,23 +3,26 @@ import Hello from '@components/Hello'
 import Contact from '@components/Contact'
 import ErrorPage from '@pages/error-page'
 import Default from '@layouts/Default'
-// import Middleware from '@middleware'
+import Middleware from '@middleware/index'
 import LoginPage from '@pages/login'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      // <Middleware listMiddleware={
-      //   [
-      //     {
-      //       name: 'AuthMiddleware',
-      //       props: { needAuth: true }
-      //     }
-      //   ]
-      // }>
-      <Default />
-      // </Middleware>),
+      <Middleware
+        listMiddleware={[
+          {
+            name: 'AuthenMiddleware',
+            props: { needAuth: true }
+          },
+          {
+            name: 'UserMiddleware',
+          }
+        ]}
+      >
+        <Default />
+      </Middleware>
     ),
     children: [
       { index: true, element: <h1>Home Page</h1> },
@@ -36,17 +39,18 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element:  
-    // (<Middleware listMiddleware={
-    //   [
-    //     {
-    //       name: 'AuthMiddleware',
-    //       props: { needAuth: false }
-    //     }
-    //   ]
-    // }>
-      <LoginPage />,
-    // </Middleware>),
+    element: (
+      <Middleware
+        listMiddleware={[
+          {
+            name: 'AuthenMiddleware',
+            props: { needAuth: false }
+          }
+        ]}
+      >
+        <LoginPage />,
+      </Middleware>
+    )
   }
 ])
 

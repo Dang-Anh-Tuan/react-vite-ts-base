@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,7 +27,7 @@ export default defineConfig({
       '@helper': path.resolve(__dirname, './src/helper'),
       '@hooks': path.resolve(__dirname, './src/hooks'),
       '@middleware': path.resolve(__dirname, './src/middleware'),
-      '@type': path.resolve(__dirname, './src/type'),
+      '@type': path.resolve(__dirname, './src/type')
     }
   }
 })

@@ -1,4 +1,5 @@
-import { FC, useState, ChangeEvent } from 'react'
+import { useAuth } from '@hooks/auth'
+import { ChangeEvent, FC, useState } from 'react'
 
 interface FormLoginProps {}
 
@@ -6,10 +7,12 @@ const FormLogin: FC<FormLoginProps> = ({}) => {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
-  // const { login } = useAuth({
-  //   username,
-  //   password
-  // })
+  const { login } = useAuth({
+    formData: {
+      username,
+      password
+    }
+  })
 
   return (
     <div>
@@ -31,7 +34,13 @@ const FormLogin: FC<FormLoginProps> = ({}) => {
         }
       />
       <br />
-      {/* <button onClick={async () => { await login() }}>Login</button> */}
+      <button
+        onClick={async () => {
+          await login()
+        }}
+      >
+        Login
+      </button>
     </div>
   )
 }
